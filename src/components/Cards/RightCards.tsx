@@ -152,7 +152,7 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                   className="w-12"
                 />
                 <div className="flex flex-col gap-2">
-                  <span className="text-gray-700 dark:text-gray-4000">
+                  <span className="text-gray-700 dark:text-gray-400">
                     Sunrise
                   </span>
                   <span className="text-xl md:text-3xl">

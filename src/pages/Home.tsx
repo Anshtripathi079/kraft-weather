@@ -65,7 +65,7 @@ const Home = () => {
           <img
             src={sun}
             alt=""
-            className="absolute -top-64 -right-32 h-44 w-44"
+            className="absolute -top-64  -right-14 md:-right-28 xl:-right-32 h-44 w-44"
           />
         </div>
       </div>
