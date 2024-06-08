@@ -3,7 +3,7 @@
 Install the project on your local machine by cloning the repo or downloading the zip.
 
 ```bash
-git clone https://github.com/Anshtripathi079/DigitalP_Assignment.git
+git clone https://github.com/Anshtripathi079/kraft-weather.git
 ```
 
 Install the project on your local machine with npm.
