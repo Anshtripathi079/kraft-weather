@@ -9,6 +9,7 @@ import ThemeToggle from "../components/ThemeToggle";
 import { ThemeContext } from "../context/ThemeContext";
 import rainy from "/rainy.svg";
 import sun from "/sunbg.png";
+import toast, { Toaster } from "react-hot-toast";
 
 const Forecast = () => {
   const [loading, setLoading] = useState(true);
@@ -33,6 +34,7 @@ const Forecast = () => {
       }
     } catch (err) {
       // console.log(err)
+      toast.error("Some error occurred");
     }
   };
 
@@ -61,6 +63,7 @@ const Forecast = () => {
         setLoading(false);
       } catch (err) {
         // console.log(err);
+        toast.error("Some error occurred");
       }
     };
 
@@ -187,6 +190,7 @@ const Forecast = () => {
           )}
         </>
       )}
+      <Toaster />
     </>
   );
 };

@@ -3,6 +3,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import toast, { Toaster } from "react-hot-toast";
 
 interface LeftCardsProps {
   data: WeatherData | null;
@@ -32,6 +33,9 @@ const LeftCards: React.FC<LeftCardsProps> = ({ data, city }) => {
         setFiveDayForecast(five.slice(1, 6));
       } catch (err) {
         // console.log(err);
+        console.log("error");
+
+        toast.error("Some error occurred");
       }
     };
 
@@ -144,6 +148,7 @@ const LeftCards: React.FC<LeftCardsProps> = ({ data, city }) => {
               </div>
             ))}
       </div>
+      <Toaster />
     </div>
   );
 };

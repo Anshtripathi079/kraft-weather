@@ -24,7 +24,7 @@ const Home = () => {
         <div className="flex justify-between w-full flex-col md:flex-row items-center gap-6 md:gap-0">
           <div className="flex md:gap-2 justify-center items-center">
             <Link to="/">
-              <span className="text-xl font-bold">Kraftshala.Weather</span>
+              <span className="text-xl font-    bold">Kraftshala.Weather</span>
             </Link>
           </div>
           <div className="flex items-center gap-4">
@@ -73,7 +73,7 @@ const Home = () => {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#0099ff"
-            fill-opacity="1"
+            fillOpacity="1"
             d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           ></path>
         </svg>

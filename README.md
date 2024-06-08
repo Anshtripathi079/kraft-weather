@@ -25,6 +25,16 @@ Above command will run the app on your local machine.
 
 **Client:** React.Js , TailwindCSS , React-Router , Typescript , Css , Vite
 
+## Features
+
+```bash
+-> Search Weather By City name.
+-> Get weather on your current location.
+-> Information persist on reload.
+-> Dark and light themes.
+-> Displays weather information and 5-day forecast.
+```
+
 ## Authors
 
 - [@Anshtripathi](https://www.github.com/Anshtripathi079)

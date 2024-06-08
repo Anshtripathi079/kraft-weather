@@ -14,6 +14,7 @@ import humidblack from "/humidblack.png";
 import visibility from "/visibility.png";
 import visibilityblack from "/visibilityblack.png";
 import { ThemeContext } from "../../context/ThemeContext";
+import toast, { Toaster } from "react-hot-toast";
 
 interface RightCardsProps {
   data: WeatherData;
@@ -28,12 +29,13 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
   const fetchData = async () => {
     try {
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/air_pollution?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=89187f0172415e3f0d994eca5c595f38`
+        `https://api.openweathermap.org/data/2.5/air_pollution?lat=${data?.coord?.lat}&lon=${data?.coord?.lon}&appid=89187f0172415e3f0d994eca5c595f38`
       );
+
       const jsonData = await res.json();
       setAqiData(jsonData);
     } catch (error) {
-      // Handle error
+      toast.error("Something went wrong");
     }
   };
 
@@ -309,6 +311,7 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
               ))}
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };
