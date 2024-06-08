@@ -34,7 +34,7 @@ const CurrentLocation = ({ setCity }: any) => {
     <>
       <div>
         <button
-          className="bg-[#2b282e] p-2 lg:p-3 flex gap-3 items-center text-white rounded-md"
+          className="bg-gray-300 text-gray-900 dark:bg-[#2b282e] p-2 lg:p-3 flex gap-3 items-center dark:text-white rounded-lg font-semibold shadow-md"
           onClick={getIP}
         >
           <FaLocationCrosshairs />

@@ -128,10 +128,10 @@ const LeftCards: React.FC<LeftCardsProps> = ({ data, city }) => {
                   />
                   <span>{Math.round(val.main.temp)}°c</span>
                 </div>
-                <span className="text-gray-400 flex-1">
+                <span className="text-gray-700 dark:text-gray-400 flex-1">
                   {getDate(val.dt_txt)}
                 </span>
-                <span className="text-gray-400 flex-1">
+                <span className="text-gray-700 dark:text-gray-400 flex-1">
                   {getDay(val.dt_txt)}
                 </span>
               </div>

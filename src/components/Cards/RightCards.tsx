@@ -110,25 +110,25 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                 />
               </div>
               <div className="flex flex-col items-center gap-3">
-                <span className=" text-gray-400">PM2_5</span>
+                <span className=" text-gray-700 dark:text-gray-400">PM2_5</span>
                 <span className="text-xl md:text-3xl">
                   {aqiData ? aqiData?.list[0]?.components?.pm2_5 : <Skeleton />}
                 </span>
               </div>
               <div className="flex flex-col items-center gap-3">
-                <span className=" text-gray-400">SO2</span>
+                <span className=" text-gray-700 dark:text-gray-400">SO2</span>
                 <span className="text-xl md:text-3xl">
                   {aqiData ? aqiData?.list[0]?.components?.so2 : <Skeleton />}
                 </span>
               </div>
               <div className="flex flex-col items-center gap-3">
-                <span className=" text-gray-400">NO2</span>
+                <span className=" text-gray-700 dark:text-gray-400">NO2</span>
                 <span className="text-xl md:text-3xl">
                   {aqiData ? aqiData?.list[0]?.components?.no2 : <Skeleton />}
                 </span>
               </div>
               <div className="flex flex-col items-center gap-3">
-                <span className=" text-gray-400">O3</span>
+                <span className=" text-gray-700 dark:text-gray-400">O3</span>
                 <span className="text-xl md:text-3xl">
                   {aqiData ? aqiData?.list[0]?.components?.o3 : <Skeleton />}
                 </span>
@@ -138,7 +138,9 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
           {/* right */}
           <div className="bg-[#ebecf7] dark:bg-[#1A191C] p-4 flex-1 rounded-xl w-full">
             <div className="flex justify-between items-center">
-              <span className="text-gray-400">Sunrise & Sunset</span>
+              <span className="text-gray-800 font-semibold dark:text-gray-400">
+                Sunrise & Sunset
+              </span>
             </div>
             <div className="flex justify-between items-center gap-2 mt-6 mx-2">
               <div className="w-full flex items-center  gap-5">
@@ -148,7 +150,9 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                   className="w-12"
                 />
                 <div className="flex flex-col gap-2">
-                  <span className="text-gray-400">Sunrise</span>
+                  <span className="text-gray-700 dark:text-gray-4000">
+                    Sunrise
+                  </span>
                   <span className="text-xl md:text-3xl">
                     {data ? (
                       <GetTime timestamp={data?.sys?.sunrise} />
@@ -165,7 +169,9 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                   className="w-12"
                 />
                 <div className="flex flex-col gap-2">
-                  <span className="text-gray-400">Sunset</span>
+                  <span className="text-gray-700 dark:text-gray-400">
+                    Sunset
+                  </span>
                   <span className="text-xl md:text-3xl">
                     {data ? (
                       <GetTime timestamp={data?.sys?.sunset} />

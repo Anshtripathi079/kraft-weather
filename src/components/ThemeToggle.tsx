@@ -9,7 +9,7 @@ const ThemeToggle = () => {
 
   return (
     <div
-      className="rounded-full dark:bg-gray-800 bg-gray-200 flex items-center justify-center w-12 h-12 cursor-pointer"
+      className="rounded-full dark:bg-gray-800 bg-gray-200 flex items-center justify-center w-12 h-12 cursor-pointer shadow-md"
       onClick={toggleTheme}
     >
       {theme === "dark" ? (

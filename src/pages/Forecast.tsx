@@ -94,13 +94,8 @@ const Forecast = () => {
               <div className="flex flex-col justify-between items-center md:flex-row ">
                 <div className="flex justify-between w-full flex-col md:flex-row items-center gap-6 md:gap-0">
                   <div className="flex md:gap-2 justify-center items-center">
-                    <img
-                      src="https://static.vecteezy.com/system/resources/previews/011/029/459/original/blue-water-drop-for-symbol-design-png.png"
-                      alt="Logo"
-                      className="w-12"
-                    />
                     <Link to="/">
-                      <span className="text-xl font-semibold">
+                      <span className="text-xl font-bold">
                         Kraftshala.Weather
                       </span>
                     </Link>
@@ -120,7 +115,7 @@ const Forecast = () => {
                         <input
                           type="text"
                           placeholder="Search place"
-                          className="bg-transparent border-none focus:outline-none mr-2 w-full placeholder:text-black"
+                          className="bg-transparent border-none focus:outline-none mr-2 w-full dark:placeholder:text-white placeholder:text-black"
                           value={search}
                           onChange={(e) => setSearch(e.target.value)}
                           onKeyDown={(e) => handleKeyDown(e)}

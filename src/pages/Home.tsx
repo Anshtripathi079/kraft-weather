@@ -24,7 +24,7 @@ const Home = () => {
         <div className="flex justify-between w-full flex-col md:flex-row items-center gap-6 md:gap-0">
           <div className="flex md:gap-2 justify-center items-center">
             <Link to="/">
-              <span className="text-xl font-semibold">Kraftshala.Weather</span>
+              <span className="text-xl font-bold">Kraftshala.Weather</span>
             </Link>
           </div>
           <div className="flex items-center gap-4">
