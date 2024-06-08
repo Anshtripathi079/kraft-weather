@@ -1,9 +1,11 @@
 import { FaCalendar } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 interface LeftCardsProps {
-  data: WeatherData;
+  data: WeatherData | null;
   forecastData: Forecast[];
   city: string;
 }
@@ -15,7 +17,7 @@ const LeftCards: React.FC<LeftCardsProps> = ({ data, city }) => {
     const fetchForecast = async () => {
       try {
         const res = await fetch(
-          `https://api.openweathermap.org/data/2.5//forecast?q=${city}&appid=89187f0172415e3f0d994eca5c595f38&units=metric`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=89187f0172415e3f0d994eca5c595f38&units=metric`
         );
         const jsonData = await res.json();
         const unique: number[] = [];
@@ -70,40 +72,57 @@ const LeftCards: React.FC<LeftCardsProps> = ({ data, city }) => {
       <div className="bg-white dark:bg-[#1D1B1F] rounded-xl shadow-sm p-6 flex flex-col">
         <span className="text-lg">Now</span>
         <div className="flex justify-between items-center mt-2">
-          <span className="text-5xl">{data?.main?.temp}°c</span>
+          <span className="text-5xl">
+            {data ? data.main.temp + "°c" : <Skeleton width={50} />}
+          </span>
 
-          <img
-            src={`https://openweathermap.org/img/wn/${data?.weather[0]?.icon}@4x.png`}
-            alt="cloud"
-            className="w-16"
-          />
+          {data ? (
+            <img
+              src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`}
+              alt="cloud"
+              className="w-16"
+            />
+          ) : (
+            <Skeleton circle={true} height={50} width={50} />
+          )}
         </div>
         <span className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-          {data?.weather[0]?.description?.toUpperCase()}
+          {data ? (
+            data.weather[0].description?.toUpperCase()
+          ) : (
+            <Skeleton width={100} />
+          )}
         </span>
         <hr className="mt-2" />
         <div className="mt-3 flex items-center gap-3">
           <FaCalendar />
           <span className="font-semibold text-gray-600 dark:text-gray-400 text-sm">
-            <TimestampConverter timestamp={data?.dt} />
+            {data ? (
+              <TimestampConverter timestamp={data.dt} />
+            ) : (
+              <Skeleton width={100} />
+            )}
           </span>
         </div>
         <div className="mt-2 flex items-center gap-3">
           <FaLocationDot />
           <span className="font-semibold text-gray-600 dark:text-gray-400 text-sm">
-            {data?.name}, {data?.sys?.country}
+            {data ? (
+              `${data.name}, ${data.sys.country}`
+            ) : (
+              <Skeleton width={100} />
+            )}
           </span>
         </div>
       </div>
       <div className="text-lg mt-4">5 days forecast</div>
       <div className="bg-white dark:bg-[#1D1B1F] rounded-xl shadow-sm p-6 mt-3 flex flex-col">
-        {fiveDayForecast &&
-          fiveDayForecast.map((val, i) => {
-            return (
+        {fiveDayForecast.length > 0
+          ? fiveDayForecast.map((val, i) => (
               <div className="flex justify-between items-center mt-2" key={i}>
                 <div className="text-lg flex items-center gap-2 flex-1">
                   <img
-                    src={`https://openweathermap.org/img/wn/${val?.weather[0]?.icon}@2x.png`}
+                    src={`https://openweathermap.org/img/wn/${val.weather[0].icon}@2x.png`}
                     alt="cloud"
                     className="w-8"
                   />
@@ -116,8 +135,14 @@ const LeftCards: React.FC<LeftCardsProps> = ({ data, city }) => {
                   {getDay(val.dt_txt)}
                 </span>
               </div>
-            );
-          })}
+            ))
+          : Array.from({ length: 5 }).map((_, i) => (
+              <div className="flex justify-between items-center mt-2" key={i}>
+                <Skeleton circle={true} height={30} width={30} />
+                <Skeleton width={50} />
+                <Skeleton width={50} />
+              </div>
+            ))}
       </div>
     </div>
   );

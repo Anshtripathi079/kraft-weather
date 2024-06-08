@@ -21,6 +21,10 @@ After installing all the packages and dependencies run the following command.
 
 Above command will run the app on your local machine.
 
+## Tech Stack
+
+**Client:** React.Js , TailwindCSS , React-Router , Typescript , Css , Vite
+
 ## Authors
 
 - [@Anshtripathi](https://www.github.com/Anshtripathi079)

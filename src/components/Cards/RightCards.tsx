@@ -1,3 +1,6 @@
+import React, { useContext, useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import wind from "/wind.png";
 import windblack from "/windblack.png";
 import thermometer from "/thermometer.png";
@@ -10,7 +13,6 @@ import humid from "/humid.png";
 import humidblack from "/humidblack.png";
 import visibility from "/visibility.png";
 import visibilityblack from "/visibilityblack.png";
-import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 
 interface RightCardsProps {
@@ -20,7 +22,7 @@ interface RightCardsProps {
 
 const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
   const { theme }: any = useContext(ThemeContext);
-  const [aqiData, setAqiData] = useState<any>("");
+  const [aqiData, setAqiData] = useState<any>(null);
   const [timedData, setTimedData] = useState<any[]>([]);
 
   const fetchData = async () => {
@@ -29,11 +31,9 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
         `https://api.openweathermap.org/data/2.5/air_pollution?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=89187f0172415e3f0d994eca5c595f38`
       );
       const jsonData = await res.json();
-
       setAqiData(jsonData);
-      // console.log(jsonData);
     } catch (error) {
-      // console.error("Error fetching data:", error);
+      // Handle error
     }
   };
 
@@ -66,6 +66,7 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
     const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
     return `${formattedHours} ${ampm}`;
   }
+
   const getQualitativeName = (val: number) => {
     if (val < 10) {
       return "Good";
@@ -79,6 +80,7 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
       return "Very Poor";
     }
   };
+
   return (
     <div className="flex flex-col col-span-7 md:col-span-5 lg:col-span-7 xl:col-span-9 margin-m">
       <div className="bg-white dark:bg-[#1D1B1F] rounded-xl shadow p-6">
@@ -92,8 +94,11 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                 Air Quality Index
               </span>
               <span className="py-[2px] px-[6px] bg-orange-200 text-black text-sm text-center rounded-xl">
-                {aqiData &&
-                  getQualitativeName(aqiData?.list[0]?.components?.pm2_5)}
+                {aqiData ? (
+                  getQualitativeName(aqiData?.list[0]?.components?.pm2_5)
+                ) : (
+                  <Skeleton width={50} />
+                )}
               </span>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-5 mt-6 items-center p-1">
@@ -107,25 +112,25 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
               <div className="flex flex-col items-center gap-3">
                 <span className=" text-gray-400">PM2_5</span>
                 <span className="text-xl md:text-3xl">
-                  {aqiData && aqiData?.list[0]?.components?.pm2_5}
+                  {aqiData ? aqiData?.list[0]?.components?.pm2_5 : <Skeleton />}
                 </span>
               </div>
               <div className="flex flex-col items-center gap-3">
                 <span className=" text-gray-400">SO2</span>
                 <span className="text-xl md:text-3xl">
-                  {aqiData && aqiData?.list[0]?.components?.so2}
+                  {aqiData ? aqiData?.list[0]?.components?.so2 : <Skeleton />}
                 </span>
               </div>
               <div className="flex flex-col items-center gap-3">
                 <span className=" text-gray-400">NO2</span>
                 <span className="text-xl md:text-3xl">
-                  {aqiData && aqiData?.list[0]?.components?.no2}
+                  {aqiData ? aqiData?.list[0]?.components?.no2 : <Skeleton />}
                 </span>
               </div>
               <div className="flex flex-col items-center gap-3">
                 <span className=" text-gray-400">O3</span>
                 <span className="text-xl md:text-3xl">
-                  {aqiData && aqiData?.list[0]?.components?.o3}
+                  {aqiData ? aqiData?.list[0]?.components?.o3 : <Skeleton />}
                 </span>
               </div>
             </div>
@@ -138,14 +143,18 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
             <div className="flex justify-between items-center gap-2 mt-6 mx-2">
               <div className="w-full flex items-center  gap-5">
                 <img
-                  src={`${wind === "dark" ? sun : sunblack}`}
+                  src={`${theme === "dark" ? sun : sunblack}`}
                   alt="sun"
                   className="w-12"
                 />
                 <div className="flex flex-col gap-2">
                   <span className="text-gray-400">Sunrise</span>
                   <span className="text-xl md:text-3xl">
-                    <GetTime timestamp={data?.sys?.sunrise} />
+                    {data ? (
+                      <GetTime timestamp={data?.sys?.sunrise} />
+                    ) : (
+                      <Skeleton />
+                    )}
                   </span>
                 </div>
               </div>
@@ -158,7 +167,11 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                 <div className="flex flex-col gap-2">
                   <span className="text-gray-400">Sunset</span>
                   <span className="text-xl md:text-3xl">
-                    <GetTime timestamp={data?.sys?.sunset} />
+                    {data ? (
+                      <GetTime timestamp={data?.sys?.sunset} />
+                    ) : (
+                      <Skeleton />
+                    )}
                   </span>
                 </div>
               </div>
@@ -175,7 +188,9 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                 alt="wind"
                 className="w-8 xl:w-12"
               />
-              <span className="text-xl">{data?.main?.humidity}%</span>
+              <span className="text-xl">
+                {data ? data?.main?.humidity + "%" : <Skeleton width={50} />}
+              </span>
             </div>
           </div>
           <div className="bg-[#ebecf7] dark:bg-[#1A191C] rounded-xl shadow p-6 w-full">
@@ -187,7 +202,7 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                 className="w-8 xl:w-12"
               />
               <span className="text-base xl:text-xl">
-                {data?.main?.pressure}hPa
+                {data ? data?.main?.pressure + "hPa" : <Skeleton width={50} />}
               </span>
             </div>
           </div>
@@ -199,7 +214,13 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                 alt="wind"
                 className="w-8 xl:w-16"
               />
-              <span className="text-xl">{data?.visibility / 1000}km</span>
+              <span className="text-xl">
+                {data ? (
+                  data?.visibility / 1000 + "km"
+                ) : (
+                  <Skeleton width={50} />
+                )}
+              </span>
             </div>
           </div>
           <div className="bg-[#ebecf7] dark:bg-[#1A191C] rounded-xl shadow p-6 w-full">
@@ -210,7 +231,9 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                 alt="wind"
                 className="w-8 xl:w-12"
               />
-              <span className="text-xl">{data?.main?.feels_like}°C</span>
+              <span className="text-xl">
+                {data ? data?.main?.feels_like + "°C" : <Skeleton width={50} />}
+              </span>
             </div>
           </div>
         </div>
@@ -220,9 +243,8 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
       <h2 className="text-lg mt-6 font-semibold">Today at</h2>
       <div className=" mt-2">
         <div className="flex items-center justify-between gap-2 overflow-x-scroll lg:overflow-visible">
-          {timedData &&
-            timedData.map((val, i) => {
-              return (
+          {timedData.length
+            ? timedData.map((val, i) => (
                 <div
                   className="bg-white dark:bg-[#1A191C] p-3 rounded-lg min-w-[75px] w-full flex flex-col justify-between items-center"
                   key={i}
@@ -237,13 +259,21 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                   />
                   <span>{Math.round(val?.main?.temp)}°C</span>
                 </div>
-              );
-            })}
+              ))
+            : Array.from({ length: 8 }).map((_, i) => (
+                <div
+                  className="bg-white dark:bg-[#1A191C] p-3 rounded-lg min-w-[75px] w-full flex flex-col justify-between items-center"
+                  key={i}
+                >
+                  <Skeleton circle={true} height={50} width={50} />
+                  <Skeleton width={50} />
+                  <Skeleton width={30} />
+                </div>
+              ))}
         </div>
         <div className="flex items-center justify-between gap-2 mt-4 overflow-x-scroll lg:overflow-visible">
-          {timedData &&
-            timedData.map((val, i) => {
-              return (
+          {timedData.length
+            ? timedData.map((val, i) => (
                 <div
                   className="bg-white dark:bg-[#1A191C] p-3 rounded-lg min-w-[75x] w-full flex flex-col justify-between items-center gap-3"
                   key={i}
@@ -260,8 +290,17 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
                     {Math.round(val?.wind?.speed)}km/h
                   </span>
                 </div>
-              );
-            })}
+              ))
+            : Array.from({ length: 8 }).map((_, i) => (
+                <div
+                  className="bg-white dark:bg-[#1A191C] p-3 rounded-lg min-w-[75x] w-full flex flex-col justify-between items-center gap-3"
+                  key={i}
+                >
+                  <Skeleton circle={true} height={50} width={50} />
+                  <Skeleton width={50} />
+                  <Skeleton width={30} />
+                </div>
+              ))}
         </div>
       </div>
     </div>
