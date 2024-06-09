@@ -72,7 +72,7 @@ const LeftCards: React.FC<LeftCardsProps> = ({ data, city }) => {
   }
 
   return (
-    <div className="flex flex-col col-span-7 md:col-span-4 lg:col-span-4 xl:col-span-3 margin-m">
+    <div className="flex flex-col col-span-7 md:col-span-4 lg:col-span-4 xl:col-span-3 margin-m-left">
       <div className="bg-white dark:bg-[#1D1B1F] rounded-xl shadow-sm p-6 flex flex-col">
         <span className="text-lg">Now</span>
         <div className="flex justify-between items-center mt-2">

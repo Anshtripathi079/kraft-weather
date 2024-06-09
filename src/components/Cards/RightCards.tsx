@@ -85,7 +85,7 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
 
   return (
     <div className="flex flex-col col-span-7 md:col-span-5 lg:col-span-7 xl:col-span-9 margin-m">
-      <div className="bg-white dark:bg-[#1D1B1F] rounded-xl shadow p-6">
+      <div className="bg-white dark:bg-[#1D1B1F] rounded-xl shadow p-6 margin-m">
         <h2 className="text-lg font-semibold">Today's Highlights</h2>
         {/* top */}
         <div className="flex flex-col xl:flex-row justify-between items-center mt-3 w-full gap-6">
@@ -138,20 +138,20 @@ const RightCards: React.FC<RightCardsProps> = ({ data, forecastData }) => {
             </div>
           </div>
           {/* right */}
-          <div className="bg-[#ebecf7] dark:bg-[#1A191C] p-4 flex-1 rounded-xl w-full">
+          <div className="bg-[#ebecf7] dark:bg-[#1A191C] p-4 flex-1 rounded-xl w-full ">
             <div className="flex justify-between items-center">
               <span className="text-gray-800 font-semibold dark:text-gray-400">
                 Sunrise & Sunset
               </span>
             </div>
-            <div className="flex justify-between items-center gap-2 mt-6 mx-2">
+            <div className="flex justify-between items-center gap-2 mt-6 mx-2 flexCol">
               <div className="w-full flex items-center  gap-5">
                 <img
                   src={`${theme === "dark" ? sun : sunblack}`}
                   alt="sun"
                   className="w-12"
                 />
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 ">
                   <span className="text-gray-700 dark:text-gray-400">
                     Sunrise
                   </span>

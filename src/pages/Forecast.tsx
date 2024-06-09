@@ -9,6 +9,7 @@ import ThemeToggle from "../components/ThemeToggle";
 import { ThemeContext } from "../context/ThemeContext";
 import rainy from "/rainy.svg";
 import sun from "/sunbg.png";
+import Multiple from "../components/MultipleCities";
 import toast, { Toaster } from "react-hot-toast";
 
 const Forecast = () => {
@@ -113,7 +114,7 @@ const Forecast = () => {
                       <div
                         className={`mr-6 ${
                           theme === "dark" ? "bg-[#2b282e]" : "bg-white"
-                        }  rounded-lg w-[250px] lg:w-[300px] xl:w-[600px] max-w-[600px] shadow-md flex items-center p-3 relative`}
+                        }  rounded-lg w-[230px]  lg:w-[300px] xl:w-[600px] max-w-[600px] shadow-md flex items-center p-3 relative`}
                       >
                         <input
                           type="text"
@@ -190,6 +191,7 @@ const Forecast = () => {
           )}
         </>
       )}
+      <Multiple />
       <Toaster />
     </>
   );
