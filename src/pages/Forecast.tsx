@@ -9,8 +9,8 @@ import ThemeToggle from "../components/ThemeToggle";
 import { ThemeContext } from "../context/ThemeContext";
 import rainy from "/rainy.svg";
 import sun from "/sunbg.png";
-import Multiple from "../components/MultipleCities";
 import toast, { Toaster } from "react-hot-toast";
+import MultipleCities from "../components/MultipleCities";
 
 const Forecast = () => {
   const [loading, setLoading] = useState(true);
@@ -189,7 +189,7 @@ const Forecast = () => {
               </div>
             </div>
           )}
-          <Multiple />
+          <MultipleCities />
         </>
       )}
 

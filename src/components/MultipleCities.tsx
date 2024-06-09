@@ -22,61 +22,12 @@ interface WeatherDisplayProps {
   loading: boolean;
 }
 
-const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
-  city,
-  data,
-  loading,
-}) => {
-  function capitalize(s: string): string {
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }
-
-  if (loading) {
-    return (
-      <div className="dark:bg-[#1A191C] bg-white p-4 flex flex-col rounded-lg w-full shadow-md">
-        <Skeleton height={30} width="80%" className="mx-auto my-2" />
-        <Skeleton
-          circle={true}
-          height={64}
-          width={64}
-          className="mx-auto my-2"
-        />
-        <Skeleton height={20} width="60%" className="mx-auto my-2" />
-        <Skeleton height={20} width="40%" className="mx-auto my-2" />
-      </div>
-    );
-  }
-
-  return (
-    <div className="dark:bg-[#1A191C] bg-white p-4 flex flex-col rounded-lg w-full shadow-md">
-      <h2 className="text-center text-lg font-semibold dark:text-white">
-        Weather in {city}
-      </h2>
-      <img
-        src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}@4x.png`}
-        alt="cloud"
-        className="w-16 mx-auto"
-      />
-      <p className="dark:text-white text-center">
-        Description:{" "}
-        {data?.weather[0].description
-          .split(" ")
-          .map((item: string) => capitalize(item))
-          .join(" ")}
-      </p>
-      <p className="dark:text-white text-center">
-        Temperature: {data?.main.temp}°C
-      </p>
-    </div>
-  );
-};
-
 interface CityWeatherData {
   city: string;
   data: WeatherData;
 }
 
-const Multiple: React.FC = () => {
+const MultipleCities: React.FC = () => {
   const [weatherData, setWeatherData] = useState<CityWeatherData[]>([]);
   const [loading, setLoading] = useState(true);
   const apiKey = "89187f0172415e3f0d994eca5c595f38";
@@ -136,4 +87,53 @@ const Multiple: React.FC = () => {
   );
 };
 
-export default Multiple;
+export default MultipleCities;
+
+const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
+  city,
+  data,
+  loading,
+}) => {
+  function capitalize(s: string): string {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  if (loading) {
+    return (
+      <div className="dark:bg-[#1A191C] bg-white p-4 flex flex-col rounded-lg w-full shadow-md">
+        <Skeleton height={30} width="80%" className="mx-auto my-2" />
+        <Skeleton
+          circle={true}
+          height={64}
+          width={64}
+          className="mx-auto my-2"
+        />
+        <Skeleton height={20} width="60%" className="mx-auto my-2" />
+        <Skeleton height={20} width="40%" className="mx-auto my-2" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="dark:bg-[#1A191C] bg-white p-4 flex flex-col rounded-lg w-full shadow-md">
+      <h2 className="text-center text-lg font-semibold dark:text-white">
+        Weather in {city}
+      </h2>
+      <img
+        src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}@4x.png`}
+        alt="cloud"
+        className="w-16 mx-auto"
+      />
+      <p className="dark:text-white text-center">
+        Description:{" "}
+        {data?.weather[0].description
+          .split(" ")
+          .map((item: string) => capitalize(item))
+          .join(" ")}
+      </p>
+      <p className="dark:text-white text-center">
+        Temperature: {data?.main.temp}°C
+      </p>
+    </div>
+  );
+};
