@@ -64,7 +64,7 @@ const Forecast = () => {
         setLoading(false);
       } catch (err) {
         // console.log(err);
-        toast.error("Some error occurred");
+        // toast.error("Some error occurred");
       }
     };
 
@@ -189,9 +189,10 @@ const Forecast = () => {
               </div>
             </div>
           )}
+          <Multiple />
         </>
       )}
-      <Multiple />
+
       <Toaster />
     </>
   );

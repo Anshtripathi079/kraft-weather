@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-// Define types for the weather data
 interface Weather {
   description: string;
   icon: string;
