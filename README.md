@@ -33,6 +33,7 @@ Above command will run the app on your local machine.
 -> Information persist on reload.
 -> Dark and light themes.
 -> Displays weather information and 5-day forecast.
+-> Multiple cities weather information at same time.
 ```
 
 ## Authors
